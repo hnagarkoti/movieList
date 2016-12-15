@@ -1,0 +1,42 @@
+<section>
+  <div id="content">
+    <a type="button" class="btn" name="button" ui-sref="history({userName:userName})">History</a>
+    <div id="owl-demo" class="owl-carousel" ng-show="isLoaded">
+
+       <div class="item" ng-repeat="movie in movieList" >
+            <img class="lazyOwl" ng-src="{{movie.images[0].url}}?{{$index}}"  alt="live planner">
+            <div class="item_txt">
+              <span>{{ movie.title }}</span>
+              <div class="des_btn">
+                <span>{{ movie.description}}</span>
+                <button type="button" class="button_cde" data-toggle="modal" data-target="#myModal" id="{{$index}}" ng-click="renderVideo($index,movie.contents[0].url);">Open Modal</button>
+              </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+  <!-- Modal PopUp-->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p><iframe id="videoPop" width="560" height="315" src="https://www.youtube.com/embed/mParRVXhFLc" frameborder="0" allowfullscreen></iframe></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+<div class="">
+<div class="row">
+  <div class="col-lg-12">
+    <h3 class="text-center">Hey {{user.name}} Buddy, Here is your history!</h3>
+    <p>
+      Movie Playlist records
+    </p>
+    <ul class="timeline">
+
+      <span>
+      <li ng-repeat="history in user.movies track by $index" ng-class-odd="timeline-inverted" ng-class-even="">
+        <div class="timeline-image">
+          <img class="img-circle img-responsive" ng-src="{{history.images}}" alt="">
+        </div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4>{{history.title}}</h4>
+            <h4 class="subheading">Last Seen: {{ lastSeen(history.date) }}</h4>
+            <h4 class="subheading">Watched On: {{history.date | date :  "fullDate"}}</h4>
+          </div>
+          <div class="timeline-body">
+            <p class="text-muted">
+              {{ history.description }}
+            </p>
+          </div>
+        </div>
+        <div class="line" ng-if="!(user.movies.length - 1 == $index)"></div>
+      </li>
+    </span>
+    </ul>
+  </div>
+</div>
+</div>
