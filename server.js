@@ -9,9 +9,22 @@ var engines = require('consolidate');
 var mongoose = require('mongoose');
 var bluebird = require('bluebird');
 
+var OPENSHIFT_MONGODB_DB_PASSWORD = 'hemant';
+var OPENSHIFT_MONGODB_DB_USERNAME = 'hemant';
+
 mongoose.Promise = bluebird;
 
-mongoose.connect('mongodb://localhost/movieDb');
+var connection_string = '127.0.0.1:27017/movieDb';
+// if OPENSHIFT env variables are present, use the available connection info:
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
+  connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+  process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+  process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+  process.env.OPENSHIFT_APP_NAME;
+}
+
+mongoose.connect('mongodb://'+connection_string);
 
 var routes = require('./routes/index');
 // var users = require('./routes/users');
