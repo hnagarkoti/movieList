@@ -4,8 +4,11 @@ var myApp= {};
 
 var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ui.bootstrap.setNgAnimate', 'ngStorage']);
 
+// app.run(function(){
+  // window.localStorage.clear();
+// })
 app.config(function($stateProvider, $urlRouterProvider) {
-    window.localStorage.clear();
+
     $urlRouterProvider.otherwise('/home');
 
     $stateProvider
