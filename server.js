@@ -24,8 +24,15 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
   process.env.OPENSHIFT_APP_NAME;
 }
 
-mongoose.connect('mongodb://'+connection_string);
+mongoose.connect('mongodb://'+connection_string, function(err){
+  if(err)
+  console.log('error while conneting mongo:- ',err);
+  else {
+    console.log('mongo connected');
+  }
+})
 
+console.log(connection_string);
 var routes = require('./routes/index');
 // var users = require('./routes/users');
 
