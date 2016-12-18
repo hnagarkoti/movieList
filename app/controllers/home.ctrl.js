@@ -17,7 +17,7 @@ app.controller('CarouselDemoCtrl',['$scope', '$animate', '$http', '$window', fun
         });
       }, 10);
 
-      window.localStorage.clear();
+      // window.localStorage.clear();
       var myObj1 = JSON.parse(window.localStorage.getItem("userInfo"));
       if(!myObj1){
         // set user into browser

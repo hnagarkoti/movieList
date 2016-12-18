@@ -4,14 +4,27 @@ app.controller('HistoryCtrl',['$scope', '$animate', '$http', '$window', 'user', 
 
   $scope.lastWatched = function(d1){
       var startDate = new Date(d1);
-      console.log(d1);
       var endDate = new Date();
       var diffMs = (endDate - startDate); // milliseconds between now & Christmas
-      var diffDays = Math.round(diffMs / 86400000); // days
-      var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
+      var diffSec = (diffMs/1000).toFixed(0);
       var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
-      // console.log(diff_minutes(endDate, startDate));
-      console.log(endDate - startDate);
-      return diffMins;
+      var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
+      var diffDays = Math.round(diffMs / 86400000); // days
+      if(diffDays > 0){
+        return diffDays + ' days ago.';
+      }
+      else if(diffDays <= 0){
+        if(diffHrs){
+          return diffHrs + ' hours ago.';
+        }
+        else{
+          if(diffMins){
+            return diffMins + ' min ago.';
+          }
+          else{
+            return diffSec + ' sec ago.';
+          }
+        }
+      }
     }
 }]);

@@ -5,6 +5,9 @@
     <p>
       Movie Playlist records
     </p>
+    <p ng-if="user.movies.length == 0">
+      Oop! No History Found!
+    </p>
     <ul class="timeline">
 
       <span>
@@ -15,7 +18,7 @@
         <div class="timeline-panel">
           <div class="timeline-heading">
             <h4>{{history.title}}</h4>
-            <h4 class="subheading">Last Seen: {{ lastWatched(history.date) }} minutes ago.</h4>
+            <h4 class="subheading">Last Seen: {{ lastWatched(history.date) }}</h4>
             <h4 class="subheading">Watched On: {{history.date | date :  "fullDate"}}</h4>
           </div>
           <div class="timeline-body">
